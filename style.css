@@ -1,26 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;800&display=swap');
 
-body{
+/* 181D31 card inputs 
+678983 text color
+E6DDC4 main 
+F0E9D2  */
+body {
     padding: 0;
     margin: 0;
 }
 
-.main-color{
+
+.buttonsAddClear>button:nth-of-type(1) {
+    background-color: #181D31;
+}
+
+.buttonsAddClear>button:nth-of-type(2) {
+    background-color: #181D31;
+}
+
+.main-color {
     font-family: 'Martian Mono', monospace;
-    color: white;
+    color: #181D31;
     font-size: xx-large;
-    border-bottom:1px solid #404040;
+    border-bottom: 1px solid #404040;
 
 }
 
-.main-color:hover
-{
-    color:#404040;
+.main-color-title{
+    font-family: 'Martian Mono', monospace;
+    color: #E6DDC4;
+    font-size: xx-large;
+    border-bottom: 1px solid #404040;
 }
 
-.nav-style{
-    background-color: wheat;
+.main-color:hover{
+    color: #678983;
+}
+.main-color-title:hover{
+    color: #678983;
+}
+
+.nav-style {
+    background-color: #181D31;
     display: flex;
     justify-content: center;
     margin: auto;
@@ -28,12 +50,33 @@ body{
 
 
 
-.form-container
+.form-container {
+    padding-top: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #E6DDC4;
+    max-width: 550px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.form-container > form > input
 {
+    color: #181D31;
+    background-color: #E6DDC4;
+    
+}
+
+
+
+
+.cardscontainer {
     padding-top: 20px;
     border-radius: 5%;
     margin-top: 20px;
-    background-color: wheat;
+    background-color: #181D31;
     max-width: 550px;
     height: 100%;
     display: flex;
@@ -42,50 +85,34 @@ body{
     margin: auto;
 }
 
-.cardscontainer
-{
-    padding-top: 20px;
-    border-radius: 5%;
-    margin-top: 20px;
-    background-color: rgb(217, 182, 117);
-    max-width: 550px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-}
-
-.cardscontainer > div
-{
+.cardscontainer>div {
     width: 400px;
     text-align: center;
 }
 
 /* form input styling */
 
-input{
+input {
     border: none;
     text-decoration: none;
-    border-bottom: 1px solid #808080;
-    color: #fff;
+    border-bottom: 1px solid #181D31;
+    color: #E6DDC4;
     background-color: transparent;
     margin-top: 12px;
     margin-bottom: 12px;
     width: 500px;
 }
-input:focus
-{
+
+input:focus {
     outline: none;
-    border-bottom: 2px solid #404040;
+    border-bottom: 2px solid #181D31;
 }
 
 
-.form-button
-{
+.form-button {
     border: none;
     text-decoration: none;
-    color: #fff;
+    color: #181D31;
     background-color: transparent;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -94,32 +121,31 @@ input:focus
     border-radius: 5px;
 }
 
-.form-button:hover
-{
-    border:1px solid black;
-    background-color: white;
-    color: wheat;
+.form-button:hover {
+    border: 1px solid #181D31;
+    background-color: #E6DDC4;
+    color: #E6DDC4;
 }
 
-form > p{
-    color: red;
+form>p {
+    color: #181D31;
 }
 
 /*Cards Section*/
 
-.cardslist{
+.cardslist {
     display: flex;
     justify-content: space-around;
 }
 
-.cardslist div{
+.cardslist div {
     padding: 5px;
     margin: 5px;
 }
 
-.btnremovediv{
+.btnremovediv {
     display: flex;
-    justify-content: flex-end;    
+    justify-content: flex-end;
 }
 
 /* .btnremovebtn{
@@ -132,33 +158,61 @@ form > p{
     color: red;
 } */
 
-.hide {
-    display: none;
-  }
 
-  .hide button
-  {
-    border: none;
-    
-  }
+.buttonsAddClear {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
 
-  .btndiv
-  {
+.buttonsAddClear>button {
+    /* padding: 5px; */
+    margin: 5px;
+    ;
+
+}
+
+.cardtitle {
     display: flex;
     justify-content: space-between;
-  }
+}
 
-  .myDIV{
-    background-color: antiquewhite;
-  }
-      
-  .myDIV:hover > .hide {
+.hide {
+    display: none;
+    color: #E6DDC4;
+    font-size: x-large;
+}
+
+.hide button {
+    border: none;
+
+}
+
+.btndiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.myDIV {
+    background-color: #181D31;
+}
+
+.myDIV:hover>.hide {
     display: block;
     color: red;
-  }
+}
 
-  button
-  {
+.card-body {
+    color: #E6DDC4;
+}
+
+.myDIV:hover>.card-body>.btndiv>.hide {
+    display: flex;
+
+    /* color: red; */
+}
+
+button {
     background-color: transparent;
     border: none;
     outline: none;
@@ -166,11 +220,39 @@ form > p{
     flex-direction: column;
     justify-content: center;
 
-  }
+}
 
-  .btncheckuncheck
-  {
+.btncheckuncheck {
     display: flex;
     justify-content: flex-start;
-  }
+}
 
+.footer-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.footer-button>button {
+    /* padding: 5px; */
+    margin: 5px;
+    background-color: #181D31;
+
+}
+
+
+.buttonStyle {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.errorStyle{
+    color :red;
+}

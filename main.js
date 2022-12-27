@@ -1,5 +1,5 @@
 let Notes
-
+let Id = 0;
 const noteId = document.getElementById("noteId");
 const noteError = document.getElementById("noteError");
 
@@ -33,10 +33,12 @@ function websiteInit() {
 function GetFormValues() {
 
     let note = {
+        id: Id++,
         note: noteId.value,
         description: noteDesciptionId.value,
         date: dueDateId.value,
         time: dueTimeId.value,
+        checked : false,
        
     }
 
@@ -46,12 +48,12 @@ function GetFormValues() {
 
 function ClearNotes() {
     noteId.value = ""
-    noteError.value = ""
+    noteError.innerHTML = ""
     noteDesciptionId.value = ""
-    descriptionError.value = ""
+    descriptionError.innerHTML = ""
     dueDateId.value = ""
-    dateError.value = ""
-    dueTimeId.innerHTML = ""
+    dateError.innerHTML = ""
+    dueTimeId.value = ""
     timeError.innerHTML = ""
 }
 
@@ -95,7 +97,6 @@ function validationErrors(obj) {
 
 function drawCards()
 {
-    alert(cardsContainer)
     for(const item of Notes)
     {
         console.log(item)
