@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;800&display=swap');
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.main-color{
+    font-family: 'Martian Mono', monospace;
+    color: white;
+    font-size: xx-large;
+    border-bottom:1px solid #404040;
+
+}
+
+.main-color:hover
+{
+    color:#404040;
+}
+
+.nav-style{
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+
+
+.form-container
+{
+    padding-top: 20px;
+    border-radius: 5%;
+    margin-top: 20px;
+    background-color: wheat;
+    max-width: 550px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.cardscontainer
+{
+    padding-top: 20px;
+    border-radius: 5%;
+    margin-top: 20px;
+    background-color: rgb(217, 182, 117);
+    max-width: 550px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.cardscontainer > div
+{
+    width: 400px;
+    text-align: center;
+}
+
+/* form input styling */
+
+input{
+    border: none;
+    text-decoration: none;
+    border-bottom: 1px solid #808080;
+    color: #fff;
+    background-color: transparent;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width: 500px;
+}
+input:focus
+{
+    outline: none;
+    border-bottom: 2px solid #404040;
+}
+
+
+.form-button
+{
+    border: none;
+    text-decoration: none;
+    color: #fff;
+    background-color: transparent;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width: 500px;
+    font-family: 'Martian Mono', monospace;
+    border-radius: 5px;
+}
+
+.form-button:hover
+{
+    border:1px solid black;
+    background-color: white;
+    color: wheat;
+}
+
+form > p{
+    color: red;
+}
+
+/*Cards Section*/
+
+.cardslist{
+    display: flex;
+    justify-content: space-around;
+}
+
+.cardslist div{
+    padding: 5px;
+    margin: 5px;
+}
+
+.btnremovediv{
+    display: flex;
+    justify-content: flex-end;    
+}
+
+/* .btnremovebtn{
+    border: none;
+    display: none;
+
+}
+.btnremovebtn :hover + .btnremovebtn{
+    display:block;
+    color: red;
+} */
+
+.hide {
+    display: none;
+  }
+
+  .hide button
+  {
+    border: none;
+    
+  }
+
+  .btndiv
+  {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .myDIV{
+    background-color: antiquewhite;
+  }
+      
+  .myDIV:hover > .hide {
+    display: block;
+    color: red;
+  }
+
+  button
+  {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
+  .btncheckuncheck
+  {
+    display: flex;
+    justify-content: flex-start;
+  }
+
