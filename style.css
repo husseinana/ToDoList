@@ -55,7 +55,7 @@ body {
     border-radius: 10px;
     margin-top: 20px;
     background-color: #E6DDC4;
-    max-width: 550px;
+    max-width:100vh;/* 550px;*/
     height: 100%;
     display: flex;
     justify-content: center;
@@ -74,20 +74,15 @@ body {
 
 .cardscontainer {
     padding-top: 20px;
-    border-radius: 5%;
+    border-radius: 10px;
     margin-top: 20px;
     background-color: #181D31;
-    max-width: 550px;
+    max-width: 100vh;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-}
-
-.cardscontainer>div {
-    width: 400px;
-    text-align: center;
 }
 
 /* form input styling */
@@ -100,7 +95,8 @@ input {
     background-color: transparent;
     margin-top: 12px;
     margin-bottom: 12px;
-    width: 500px;
+    /* max-width: 500px; */
+    width: 80vh;
 }
 
 input:focus {
@@ -109,7 +105,7 @@ input:focus {
 }
 
 
-.form-button {
+/* .form-button {
     border: none;
     text-decoration: none;
     color: #181D31;
@@ -118,14 +114,14 @@ input:focus {
     margin-bottom: 12px;
     width: 500px;
     font-family: 'Martian Mono', monospace;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .form-button:hover {
     border: 1px solid #181D31;
     background-color: #E6DDC4;
     color: #E6DDC4;
-}
+} */
 
 form>p {
     color: #181D31;
@@ -135,7 +131,9 @@ form>p {
 
 .cardslist {
     display: flex;
-    justify-content: space-around;
+    flex-flow: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .cardslist div {
@@ -171,16 +169,42 @@ form>p {
     ;
 
 }
-
+.card-text
+{
+    overflow-y: hidden;
+    max-height: 150px;
+    font-size: small;
+}
+.demoData{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10%;
+}
 .cardtitle {
     display: flex;
     justify-content: space-between;
 }
+.cardName{
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: -10px;
+    font-family: 'Martian Mono', monospace;
+    overflow-y: hidden;
+    max-height: 100px;
 
+}
+.inserttimetext
+{
+    font-size:xx-small;
+    display: flex;
+    justify-content: flex-end;
+}
 .hide {
     display: none;
     color: #E6DDC4;
-    font-size: x-large;
+    font-size: large;
 }
 
 .hide button {
@@ -188,13 +212,23 @@ form>p {
 
 }
 
+.hide button:focus 
+{ outline: none; }
+
+
 .btndiv {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #E6DDC4;
 }
 
 .myDIV {
     background-color: #181D31;
+    /* width: 25rem; */
+    min-width: 300px;
+    width: 300px;
+    max-width: 300px;
+    border-radius: 10px;
 }
 
 .myDIV:hover>.hide {
@@ -211,31 +245,33 @@ form>p {
 
     /* color: red; */
 }
-
+ 
 button {
     background-color: transparent;
-    border: none;
+     border: none;
     outline: none;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;  */
 
 }
+
 
 .btncheckuncheck {
     display: flex;
     justify-content: flex-start;
-}
+} 
 
 .footer-button {
     display: flex;
     justify-content: flex-end;
+    gap: 10px;
 }
 
 
 .footer-button>button {
     /* padding: 5px; */
-    margin: 5px;
+    /* margin: 5px; */
     background-color: #181D31;
 
 }
@@ -256,3 +292,18 @@ button {
 .errorStyle{
     color :red;
 }
+
+/*Checked Secion */
+.cardChecked{
+    background-color: #181D31;
+    opacity: 0.7;
+}
+
+.titleCheked
+{
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+
+
