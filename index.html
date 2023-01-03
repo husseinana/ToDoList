@@ -27,7 +27,7 @@
 </head>
 
 
-  
+
 <body>
     <nav class="navbar navbar-light nav-style">
         <a class="navbar-brand">
@@ -37,14 +37,13 @@
     <br>
     <div class="demoData footer-button">
         <button type="button" onclick="AddDemoData()" class="btn btn-dark">Add Demo Data</button>
-
     </div>
 
-   
+
     <section class="form-container">
         <form action="">
             <div id="noteidhidden" style="display: none;"></div>
-            <h1 id = "formTitle" class="main-color">Add Task</h1>
+            <h1 id="formTitle" class="main-color">Add Task</h1>
             <input id="noteId" type="text" name="note" placeholder="To Do ..."><br>
             <p class="errorStyle" id="noteError"></p>
             <input id="noteDesciptionId" type="text" name="description" placeholder="Description..."><br>
@@ -54,10 +53,10 @@
             <input id="dueTimeId" type="time" name="time" placeholder="Due Time..."><br>
             <p class="errorStyle" id="timeError"></p>
             <div class="buttonsAddClear">
-                <button type="button" id= "buttonAdd" onclick="AddNoteClick()" class="btn btn-dark">Add</button>
+                <button type="button" id="buttonAdd" onclick="AddNoteClick()" class="btn btn-dark">Add</button>
                 <button type="button" onclick="ClearNotes()" class="btn btn-dark">Clear</button>
             </div>
-           
+
 
 
             <!-- <button class="form-button" onclick="AddNoteClick()" type="button">Add To Do</button><br> -->
@@ -66,9 +65,15 @@
 
     </section>
 
+    <div class="filterbuttons">
+        <button type="button"  id="f1" onclick="SetCurrentView('All')" class="btn btn-dark">All</button>
+        <button type="button"  id="f2" onclick="SetCurrentView('Done')" class="btn btn-dark">Done</button>
+        <button type="button"  id="f3" onclick="SetCurrentView('NotDone')" class="btn btn-dark">Not Done</button>
+        <button type="button"  id="f4" onclick="SetCurrentView('Summary')" class="btn btn-dark">Summary</button>
+    </div>
     <br>
 
-    
+
 
     <!-- <section id="cardslist" class="cardslist">
         <div class="card myDIV">    
@@ -123,7 +128,7 @@
 
 
 
- <!-- <div class="hide">
+<!-- <div class="hide">
                 <div class="btndiv">
                     <div class="btncheckuncheck">
                         <button>

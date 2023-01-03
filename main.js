@@ -1,5 +1,6 @@
 let Notes
 let Id = 0;
+let currentView = 'All'
 const noteId = document.getElementById("noteId");
 const noteError = document.getElementById("noteError");
 
@@ -42,7 +43,7 @@ function GetFormValues() {
 
 
     let note = {
-        id: Id++,
+        id: GetMaxId(),
         note: noteId.value,
         description: noteDesciptionId.value,
         date: dueDateId.value,
@@ -55,12 +56,27 @@ function GetFormValues() {
     return note
 }
 
-function getDateFromInput(strDate)
+function GetMaxId()
 {
-    const [year, month, day] = strDate.split('-');
-    const date = new Date(+year, month - 1, +day+1);
+    if(Notes.length == 0)
+        return 0;
+    let max = Notes[0].id
 
-    return date.toISOString().split('T')[0] 
+    for(const item of Notes)
+    {
+        if(item.id>max)
+            max = item.id;
+    }
+
+    return ++max;
+
+}
+
+function getDateFromInput(strDate) {
+    const [year, month, day] = strDate.split('-');
+    const date = new Date(+year, month - 1, +day + 1);
+
+    return date.toISOString().split('T')[0]
 }
 
 function UpdateNote() {
@@ -93,6 +109,7 @@ function UpdateNote() {
 
 function ClearNotes() {
     noteId.value = ""
+    noteid.innerHTML = ""
     noteError.innerHTML = ""
     noteDesciptionId.value = ""
     descriptionError.innerHTML = ""
@@ -126,6 +143,8 @@ function AddNotesToLocalStorage() {
 function AddNoteClick() {
     let id = noteid.innerHTML
 
+    SetCurrentView('All')
+
     if (id == "")
         AddNotesToLocalStorage()
     else
@@ -148,9 +167,22 @@ function validationErrors(obj) {
 
 
 function drawCards() {
+
+    let filter = currentView
     cardsContainer.innerHTML = ""
 
+    if (filter == 'Summary')
+        return drawSummary();
+
     for (const item of Notes) {
+
+        if (filter == 'Done')
+            if (!item.checked)
+                continue
+        if (filter == 'NotDone')
+            if (item.checked)
+                continue
+
         const cardBox = document.createElement("div")
         if (item.checked)
             cardBox.setAttribute("class", "card myDIV cardChecked")
@@ -204,7 +236,7 @@ function drawCards() {
             cardInsertTimeP.setAttribute("class", "card-text")
 
 
-        let newDate = new Date(item.date + " @ " +item.time)
+        let newDate = new Date(item.date + " @ " + item.time)
         cardInsertTimeP.innerHTML = "Due Date : " + FormateDate(newDate)
 
         const cardDueDateP = document.createElement("p")
@@ -293,6 +325,9 @@ function FillForm(note) {
 
     formTitle.innerHTML = "Edit Task"
     buttonAdd.innerHTML = "Update"
+
+    $('html,body').scrollTop(0);
+
 }
 
 function DoneNote(evt) {
@@ -325,8 +360,11 @@ function FormateDate(currentdate) {
         + (currentdate.getMonth() + 1) + "/"
         + currentdate.getFullYear() + " @ "
         + currentdate.getHours() + ":"
-        + currentdate.getMinutes() + ":"
-        + currentdate.getSeconds();
+        + (currentdate.getMinutes() < 10 ? '0' : '') + currentdate.getMinutes()
+
+    //currentdate.getMinutes() 
+    // + ":"
+    // + currentdate.getSeconds();
     return datetime;
 }
 
@@ -338,7 +376,7 @@ function AddDemoData() {
         id: Id++,
         note: "Get Milk",
         description: "Two Cartons 2 litter",
-        date: "2022-12-31" ,
+        date: "2022-12-31",
         time: "12:00",
         checked: true,
         inserttime: GetCurDate(),
@@ -350,7 +388,7 @@ function AddDemoData() {
         id: Id++,
         note: "Fix Car",
         description: "Mandatory",
-        date: "2023-01-15" ,
+        date: "2023-01-15",
         time: "10:10",
         checked: false,
         inserttime: GetCurDate(),
@@ -414,3 +452,129 @@ function AddDemoData() {
     drawCards()
 
 }
+
+function SetCurrentView(filter) {
+    currentView = filter;
+
+    let btn = document.getElementById('f1')
+    btn.setAttribute("class","btn btn-dark")
+    btn = document.getElementById('f2')
+    btn.setAttribute("class","btn btn-dark")
+    btn = document.getElementById('f3')
+    btn.setAttribute("class","btn btn-dark")
+    btn = document.getElementById('f4')
+    btn.setAttribute("class","btn btn-dark")
+
+
+    let id = 'f1'
+    switch (currentView) {
+        case 'All':
+            id = 'f1'
+            break;
+        case 'Done':
+            id = 'f2'
+            break;
+        case 'NotDone':
+            id = 'f3'
+            break;
+        case 'Summary':
+            id = 'f4'
+            break;
+    }
+
+    btn = document.getElementById(id)
+    btn.setAttribute("class","btn btn-dark btnfocus")
+
+    drawCards();
+}
+
+
+function drawSummary() {
+
+    cardsContainer.innerHTML = ""
+
+    let DoneArr = []
+    let UnDoneArr = []
+
+    for (const item of Notes) {
+
+        if (item.checked) {
+            DoneArr.push(item.note)
+        }
+        else {
+            UnDoneArr.push(item.note)
+        }
+    }
+
+    const summaryTitle = document.createElement("div")
+    summaryTitle.setAttribute("class", "summarytabletitle fade-in-div")
+    summaryTitle.innerHTML = `There are ${UnDoneArr.length} Tasks Not Done out of ${Notes.length}`
+    cardsContainer.appendChild(summaryTitle)
+
+
+    const summaryTable = document.createElement("table")
+    summaryTable.setAttribute("class", "table table-striped table-dark fade-in-div")
+
+    const thead = document.createElement("thead")
+    const tr = document.createElement("tr")
+    const th1 = document.createElement("th")
+    th1.setAttribute("scope", "col")
+    th1.innerHTML = "#"
+
+    const th2 = document.createElement("th")
+    th2.setAttribute("scope", "col")
+    th2.innerHTML = "ID"
+
+    const th3 = document.createElement("th")
+    th3.setAttribute("scope", "col")
+    th3.innerHTML = "Task"
+
+    const th4 = document.createElement("th")
+    th4.setAttribute("scope", "col")
+    th4.innerHTML = "Due Date"
+
+    const th5 = document.createElement("th")
+    th5.setAttribute("scope", "col")
+    th5.innerHTML = "Status"
+
+    tr.appendChild(th1)
+    //tr.appendChild(th2)
+    tr.appendChild(th3)
+    tr.appendChild(th4)
+    tr.appendChild(th5)
+
+    thead.appendChild(tr)
+
+    summaryTable.appendChild(thead)
+
+    const tbody = document.createElement("tbody")
+
+    let id = 0;
+    for (const item of Notes) {
+        id++;
+        const trBody = document.createElement("tr")
+        const thBody = document.createElement("th")
+        thBody.setAttribute("scope", "row")
+        thBody.innerHTML = id
+        const tdBody1 = document.createElement("td")
+        tdBody1.innerHTML = id
+        const tdBody2 = document.createElement("td")
+        tdBody2.innerHTML = item.note
+        const tdBody3 = document.createElement("td")
+        tdBody3.innerHTML = item.date + " @ " + item.time
+        const tdBody4 = document.createElement("td")
+        tdBody4.innerHTML = (item.checked ? "Done" : "Not Done")
+
+        trBody.appendChild(thBody)
+        //trBody.appendChild(tdBody1)
+        trBody.appendChild(tdBody2)
+        trBody.appendChild(tdBody3)
+        trBody.appendChild(tdBody4)
+
+        tbody.appendChild(trBody)
+    }
+
+    summaryTable.appendChild(tbody)
+    cardsContainer.appendChild(summaryTable)
+}
+
